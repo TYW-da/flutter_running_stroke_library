@@ -36,7 +36,7 @@ class _RunningStrokeState extends State<RunningStroke> with SingleTickerProvider
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await Future<void>;
+      Future<void>;
       Future.doWhile(scrolling);
     });
   }
@@ -62,7 +62,7 @@ class _RunningStrokeState extends State<RunningStroke> with SingleTickerProvider
   double _getTextWidth(BuildContext context) {
     final span = TextSpan(text: widget.text, style: widget.style);
 
-    final constraints = BoxConstraints(maxWidth: double.infinity);
+    const constraints = BoxConstraints(maxWidth: double.infinity);
 
     final richTextWidget = Text.rich(span).build(context) as RichText;
     final renderObject = richTextWidget.createRenderObject(context);
@@ -79,22 +79,21 @@ class _RunningStrokeState extends State<RunningStroke> with SingleTickerProvider
   @override
   Widget build(BuildContext context) {
     _initialize(context);
-    bool isHorizontal = true;
 
     Alignment? alignment;
 
     switch (widget.crossAxisAlignment) {
       case CrossAxisAlignment.start:
-        alignment = isHorizontal ? Alignment.topCenter : Alignment.centerLeft;
+        alignment =  Alignment.topCenter;
         break;
       case CrossAxisAlignment.end:
-        alignment =
-        isHorizontal ? Alignment.bottomCenter : Alignment.centerRight;
+        alignment = Alignment.bottomCenter;
         break;
       case CrossAxisAlignment.center:
         alignment = Alignment.center;
         break;
       case CrossAxisAlignment.stretch:
+        break;
       case CrossAxisAlignment.baseline:
         alignment = null;
         break;
@@ -103,7 +102,7 @@ class _RunningStrokeState extends State<RunningStroke> with SingleTickerProvider
     Widget runningStroke = ListView.builder(
       controller: scrollController,
       scrollDirection: Axis.horizontal,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (_, i) {
         Text text = Text(widget.text, style: widget.style);
         return alignment == null
