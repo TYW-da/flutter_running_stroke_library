@@ -25,7 +25,7 @@ class RunningStroke extends StatefulWidget {
   State<StatefulWidget> createState() => _RunningStrokeState();
 }
 
-class _RunningStrokeState extends State<RunningStroke> with SingleTickerProviderStateMixin {
+class _RunningStrokeState extends State<RunningStroke> {
   final ScrollController scrollController = ScrollController();
 
   late double target;
